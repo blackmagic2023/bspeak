@@ -27,8 +27,7 @@ def save_public_key_to_json(username, public_key):
     save_key_to_json(keys, "public_keys.json")
 
 # Function to load the public key from the JSON file
-def load_public_key_from_json(username):
-    keys = load_keys_from_json("public_keys.json")
+def load_public_key_from_json(keys, username):
     if username in keys:
         return keys[username].encode()
     else:
@@ -71,6 +70,7 @@ def decrypt_message(encrypted_message, private_key):
 
 # Main function
 def main():
+    keys = load_keys_from_json("public_keys.json")
     while True:
         print("1. Encrypt Message")
         print("2. Decrypt Message")
@@ -82,7 +82,7 @@ def main():
             # Encrypt Message
             username = input("Enter recipient's username: ")
             message = input("Enter message to encrypt: ")
-            public_key = load_public_key_from_json(username)
+            public_key = load_public_key_from_json(keys, username)
             if public_key:
                 encrypted_message = encrypt_message(message, public_key)
                 print("Encrypted Message:", encrypted_message.hex())
