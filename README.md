@@ -1,7 +1,9 @@
 # bspeak
 A message encryption and decryption script for secure 2-way communication.
 
+#
 ![bspeak](https://github.com/blackmagic2023/blackspeak2/assets/149164084/812064d9-3f2b-46dd-b25a-9717e3ae1752)
+
 
 # Setup
 
