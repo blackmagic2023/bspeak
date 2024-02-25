@@ -45,7 +45,7 @@ python3 bspeak.py
 
 - When you need to add a users public key you may do so by selecting option 3 in the main menu 'manage keys' once you are in the manage key menu select option 2 'save public key'
 
--Next you will be prompted for a username you can set any username for someone you have the public key for
+- Next you will be prompted for a username you can set any username for someone you have the public key for
 
 
 ![bobskey](https://github.com/blackmagic2023/blackspeak2/assets/149164084/e2fd695c-09fd-4404-82e4-721999e3be39)
