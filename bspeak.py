@@ -5,6 +5,36 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 
+# Function to save a key to a JSON file
+def save_key_to_json(key, filename):
+    with open(filename, "w") as key_file:
+        json.dump(key, key_file)
+
+# Function to load keys from a JSON file
+def load_keys_from_json(filename):
+    try:
+        with open(filename, "r") as key_file:
+            keys = json.load(key_file)
+        return keys
+    except (FileNotFoundError, json.JSONDecodeError):
+        print("Error: Unable to load keys from JSON file.")
+        return {}
+
+# Function to save the public key along with the username to a JSON file
+def save_public_key_to_json(username, public_key):
+    keys = load_keys_from_json("public_keys.json")
+    keys[username] = public_key.decode()
+    save_key_to_json(keys, "public_keys.json")
+
+# Function to load the public key from the JSON file
+def load_public_key_from_json(username):
+    keys = load_keys_from_json("public_keys.json")
+    if username in keys:
+        return keys[username].encode()
+    else:
+        print("Error: Public key not found.")
+        return None
+
 # Function to generate a key pair
 def generate_key_pair():
     private_key = rsa.generate_private_key(
@@ -14,53 +44,6 @@ def generate_key_pair():
     )
     public_key = private_key.public_key()
     return private_key, public_key
-
-# Function to save a key to a file
-def save_key_to_file(key, filename):
-    with open(filename, "wb") as key_file:
-        key_file.write(key)
-
-# Function to load a key from a file
-def load_key_from_file(filename):
-    with open(filename, "rb") as key_file:
-        key = key_file.read()
-    return key
-
-# Function to save a key to a JSON file
-def save_key_to_json(key, filename):
-    with open(filename, "w") as key_file:
-        json.dump(key, key_file)
-
-# Function to load a key from a JSON file
-def load_key_from_json(filename):
-    try:
-        with open(filename, "r") as key_file:
-            key = json.load(key_file)
-        return key
-    except (FileNotFoundError, json.JSONDecodeError):
-        print("Error: Unable to load key from JSON file.")
-        return None
-
-# Function to save the public key along with the username to a JSON file
-def save_public_key_to_json(username, public_key):
-    try:
-        with open("public_keys.json", "r") as f:
-            public_keys = json.load(f)
-    except FileNotFoundError:
-        public_keys = {}
-    public_keys[username] = public_key.decode()
-    with open("public_keys.json", "w") as f:
-        json.dump(public_keys, f)
-
-# Function to load the public key from the JSON file
-def load_public_key_from_json(username):
-    try:
-        with open("public_keys.json", "r") as f:
-            public_keys = json.load(f)
-        return public_keys[username].encode()
-    except (FileNotFoundError, KeyError):
-        print("Error: Public key not found.")
-        return None
 
 # Function to encrypt a message using a public key
 def encrypt_message(message, public_key):
@@ -140,6 +123,7 @@ def main():
                     encoding=serialization.Encoding.PEM,
                     format=serialization.PublicFormat.SubjectPublicKeyInfo
                 ), public_key_file)
+                save_public_key_to_json(username, public_key)
                 print("Public Key saved successfully.")
                 
             elif sub_choice == "2":
