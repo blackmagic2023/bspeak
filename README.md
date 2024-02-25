@@ -8,7 +8,7 @@ A message encryption and decryption script for secure 2-way communication.
 Download the script
 
 ```
-git clone
+git clone https://github.com/blackmagic2023/bspeak.git
 ```
 
 Enter working directory
