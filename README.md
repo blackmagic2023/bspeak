@@ -53,10 +53,24 @@ python3 bspeak.py
 ## Encrypting a message
 
 - Select option 1 from the main menu
-- You should be prompted to enter a username 
+- You should be prompted to enter a username
+- type the username of a user you have defined in the program with a public key and username
+- type a message
+- send your encrypted message to the owner of the public key you added as a user!
 
-# Images
+![sendbob](https://github.com/blackmagic2023/blackspeak2/assets/149164084/b5f7bc18-27be-403d-8332-6aabdf042699)
 
-![bspeak](https://github.com/blackmagic2023/blackspeak2/assets/149164084/812064d9-3f2b-46dd-b25a-9717e3ae1752)
+## Decrypting a message
+
+- If someone is using bspeak and has added you as a user and encrypted a message for you all you have to do is select option 2 'decrypt message' in the main menu
+- you will be prompted to specify where your private key file is located
+- next you will be prompted to enter th encrypted message
+
+![dcrypt](https://github.com/blackmagic2023/blackspeak2/assets/149164084/b9cf7869-99f2-4a4c-b2b6-86f0b314ddbc)
+
+
+enjoy <3
+
+blackmagic
 
 
